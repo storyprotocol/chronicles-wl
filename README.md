@@ -12,7 +12,7 @@ AND char_length("content") < 5
 
 - Purpose: Filters out spam by removing entries with very short content.
 - Logic: Selects all columns from the public.chapter table where:
-  - created_at is less than 1709535600000 (a specific timestamp indicating a cutoff date and time).
+  - created_at is less than 1709535600000 (a specific timestamp indicating the cutoff date and time before 3/3/2024 ).
   - char_length("content") is less than 5, assuming that spam messages are very short.
 
 ## Malicious Activity Detection Query
