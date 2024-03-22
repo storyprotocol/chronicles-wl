@@ -43,7 +43,7 @@ FROM (
     AND char_length("content") > 5
 ) AS subquery
 GROUP BY subquery.wallet_address
-HAVING COUNT(*) = 1
+HAVING COUNT(*) <= 4
 ORDER BY COUNT(*) DESC;
 
 ```
@@ -51,4 +51,4 @@ ORDER BY COUNT(*) DESC;
 - Purpose: Seems to identify single, possibly legitimate posts from wallet addresses before a certain time with content length criteria.
 - Logic:
   - Inner query filters records from public.chapter before a set timestamp and with content longer than 5 characters.
-  - Outer query groups these by wallet_address, but filters for those with only a single post, which may indicate an attempt to identify non-malicious activity or a mistake in the query logic since it orders by descending count but filters for a count of 1.
+  - Outer query groups these by wallet_address, but filters for those with only a single post, which may indicate an attempt to identify non-malicious activity or a mistake in the query logic since it orders by descending count but filters for a count less than 5.
